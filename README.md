@@ -13,4 +13,4 @@ pip install beautifulsoup4 requests lxml selenium
 >From [THIS WEBSITE](https://animekisa.tv/)
 >[example link](https://animekisa.tv/black-clover)
 
-### Use a download manager such as jdownloader2 to download the scrapped links (in the csv file)
+### Use a download manager such as [jdownloader2](https://jdownloader.org/download/index) to download the scrapped links (in the csv file)
