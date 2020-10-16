@@ -1,7 +1,7 @@
 # Anime-Batch-downloader
 ## Requirements
 ```
-pip install beautifulsoup4 requests lxml selenium
+pip install beautifulsoup4 requests lxml selenium wget
 ```
 
 ### Add chrome driver to your path (follow any youtube tutorial)
