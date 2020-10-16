@@ -3,7 +3,7 @@ from selenium import webdriver
 import requests
 import csv
 
-z=int(input('slow[with obtrusive ads, may encounter errors](1) / fast[without obtrusive ads](2): '))
+z=int(input('slow[without obtrusive ads, may encounter errors](1) / fast[with obtrusive ads](2): '))
 y=input('Give link: ')
 w=input("geek mode? y/n: ")
 g=['(HDP - mp4)','(360P - mp4)','(720P - mp4)','(1080P - mp4)']
@@ -19,11 +19,16 @@ for i in list(soup.find('div',class_="infoepbox").find_all('a',class_="infovan")
     if len(i['href'].split('.'))==1:
         l.append(i['href'])
 
+start=int(input("enter starting"))-1
+end=int(input("enter ending"))-1
+episode_list=l[::-1][start:end+1]
+if w=='y':
+    print(episode_list)
 # listToStr = ' '.join(map(str, s))
 
 with open('{} links.csv'.format(' '.join(map(str,y.split('/')[-1].split('-')))),'w') as f:
     write=csv.writer(f)
-    for j,i in enumerate(l):
+    for j,i in enumerate(episode_list):
         src='https://animekisa.tv/'+i
         chop = webdriver.ChromeOptions()
         chop.add_extension('./Open link in same tab, pop-up as tab.crx')
@@ -63,6 +68,7 @@ with open('{} links.csv'.format(' '.join(map(str,y.split('/')[-1].split('-')))),
                     b=k.a['href']
             except:
                 pass
-        write.writerow([l[j][-1:-11:-1],b])
+        write.writerow([episode_list[j][-1:-10:-1][::-1],b])
 
 print('\nOMEDETO !!')
+
