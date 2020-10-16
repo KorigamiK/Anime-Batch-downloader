@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 import requests
 import csv
+import wget
+import os
+import sys
 
 z=int(input('slow[without obtrusive ads, may encounter errors](1) / fast[with obtrusive ads](2): '))
 y=input('Give link: ')
@@ -26,7 +29,9 @@ if w=='y':
     print(episode_list)
 # listToStr = ' '.join(map(str, s))
 
-with open('{} links.csv'.format(' '.join(map(str,y.split('/')[-1].split('-')))),'w') as f:
+final_links=list()
+name='{}'.format(' '.join(map(str,y.split('/')[-1].split('-'))))
+with open('{} links.csv'.format(name),'w') as f:
     write=csv.writer(f)
     for j,i in enumerate(episode_list):
         src='https://animekisa.tv/'+i
@@ -69,6 +74,22 @@ with open('{} links.csv'.format(' '.join(map(str,y.split('/')[-1].split('-')))),
             except:
                 pass
         write.writerow([episode_list[j][-1:-10:-1][::-1],b])
+        final_links.append(b)
 
 print('\nOMEDETO !!')
 
+def downloader(c):
+    if not os.path.exists('{}'.format(name)):
+        os.makedirs('{}'.format(name))
+    os.chdir('./{}'.format(name))
+    for i in c:
+        wget.download(i, os.getcwd())
+
+def bar_progress(current, total, width=80):
+  progress_message = "Downloading: %d%% [%d / %d] bytes" % (current / total * 100, current, total)
+  # Don't use print() as it will print in new line every time.
+  sys.stdout.write("\r" + progress_message)
+  sys.stdout.flush()
+
+if input('download now?'):
+    downloader(final_links)
