@@ -14,4 +14,4 @@ pip install beautifulsoup4 requests lxml selenium wget
 >[example link](https://animekisa.tv/black-clover)
 
 ### Use a download manager such as [jdownloader2](https://jdownloader.org/download/index) to download the scrapped links (in the csv file)
-or just follow the instructions to download directly :)
+### or just follow the instructions to download directly :)
